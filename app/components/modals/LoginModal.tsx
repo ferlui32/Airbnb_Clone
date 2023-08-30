@@ -42,14 +42,13 @@ const LoginModal = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true)
-        console.log(data)
+
         signIn('credentials', { 
             ...data,
             redirect: false,
         })
         .then((callback) => {
             setIsLoading(false)
-            console.log('SignIn response:', callback);
 
             if (callback?.ok){
                 toast.success('Logged in')
@@ -96,13 +95,13 @@ const LoginModal = () => {
                     outline
                     label="Continue with Google"
                     icon={FcGoogle}
-                    onClick={()=>{}}
+                    onClick={()=>signIn('google')}
                 />
                 <Button 
                     outline
                     label="Continue with Github"
                     icon={AiFillGithub}
-                    onClick={()=>{}}
+                    onClick={()=>signIn('github')}
                 />
                 <div
                     className="
