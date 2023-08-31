@@ -1,5 +1,8 @@
 'use client'
+import { useRouter, useSearchParams } from "next/navigation"
 import { IconType } from "react-icons"
+import qs from "query-string"
+import { useCallback } from "react"
 
 interface CategoryBoxProps {
     icon: IconType
@@ -12,8 +15,35 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
     label,
     selected
 }) => {
+    const router = useRouter()
+    const params = useSearchParams()
+    const handleClick = useCallback(() => {
+        let currentQuery = {}
+
+        if (params) {
+            currentQuery = qs.parse(params.toString())
+        }
+
+        const updatedQuery: any = {
+            ...currentQuery,
+            category: label
+        }
+        // if category is already selected, remove it from updatedQuery
+        if (params?.get('category') === label) {
+            delete updatedQuery.category
+        }
+
+        const url = qs.stringifyUrl({
+            url: '/',
+            query: updatedQuery
+        }, {skipNull: true})
+
+        router.push(url)
+    }, [label, params, router])
+
     return (
         <div
+            onClick={handleClick}
             className={`
                 flex
                 flex-col

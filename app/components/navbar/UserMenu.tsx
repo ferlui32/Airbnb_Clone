@@ -23,11 +23,18 @@ const UserMenu: React.FC<UserMenuProps> = ({
      const toggleOpen = useCallback(()=>{
         setIsOpen((value)=>!value)
      }, [])
+
+     const onRent = useCallback(() => {
+        if (!currentUser) {
+            // return is needed so the rest of the code wont run until logged
+            return loginModal.onOpen()
+        }
+     }, [currentUser, loginModal])
     return(
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
                 <div
-                    onClick={() => {}}
+                    onClick={onRent}
                     className="
                     hidden
                     md:block
