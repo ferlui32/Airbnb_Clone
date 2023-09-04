@@ -3,11 +3,13 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from '../Avatar'
 import { useCallback, useState } from 'react'
 import MenuItem from '../navbar/MenuItem'
-import useRegisterModal from '../../../hooks/useRegisterModal'
-import useLoginModal from '../../../hooks/useLoginModal'
-// import { User } from "@prisma/client" replaced with SafeUser
-import { signOut } from "next-auth/react"
+import useRegisterModal from '@/app/hooks/useRegisterModal'
+import useLoginModal from '@/app/hooks/useLoginModal'
+import useRentModal from '@/app/hooks/useRentModal'
+// import { User } from "@prisma/client" replaced by SafeUser
 import { SafeUser } from '@/app/types/index'
+import { signOut } from "next-auth/react"
+
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
@@ -18,6 +20,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
 }) => {
     const registerModal = useRegisterModal()
     const loginModal = useLoginModal()
+    const rentModal = useRentModal()
     const [isOpen, setIsOpen]= useState(false)
 
      const toggleOpen = useCallback(()=>{
@@ -29,7 +32,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
             // return is needed so the rest of the code wont run until logged
             return loginModal.onOpen()
         }
-     }, [currentUser, loginModal])
+
+        rentModal.onOpen()
+     }, [currentUser, loginModal, rentModal])
     return(
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -109,7 +114,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 label="My properties"
                             />
                             <MenuItem
-                                onClick={()=>{}}
+                                onClick={rentModal.onOpen}
                                 label="Airbnb my home"
                             />
                             <hr />
