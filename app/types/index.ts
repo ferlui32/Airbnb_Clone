@@ -13,6 +13,7 @@ Listing,
  > & {
     createdAt: string
     startDate: string
+    endDate: string
     listing: SafeListing
  }
 
