@@ -20,7 +20,7 @@ import CountrySelect from "../inputs/CountrySelect";
 import { categories } from '../navbar/Categories';
 import ImageUpload from '../inputs/ImageUpload';
 import Heading from '../Heading';
-import Input from '../inputs/Input2';
+import Input from '../inputs/Input';
 
 enum STEPS {
   CATEGORY = 0,
