@@ -1,6 +1,6 @@
 import countries from 'world-countries';
 
-const formattedCountries = countries.map((country: any) => ({
+const formattedCountries = countries.map((country) => ({
   value: country.cca2,
   label: country.name.common,
   flag: country.flag,
