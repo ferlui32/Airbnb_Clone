@@ -19,8 +19,8 @@ import CategoryInput from '../inputs/CategoryInput';
 import CountrySelect from "../inputs/CountrySelect";
 import { categories } from '../navbar/Categories';
 import ImageUpload from '../inputs/ImageUpload';
-import Input from '../inputs/Input';
 import Heading from '../Heading';
+import Input from '../inputs/input';
 
 enum STEPS {
   CATEGORY = 0,
